@@ -1,0 +1,26 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-nginx-cm
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/nginx1"
+        backend:
+          service:
+            name: webserver-nginx-cm-01
+            port:
+              number: 80
+      - pathType: Prefix
+        path: "/nginx2"
+        backend:
+          service:
+            name: webserver-nginx-cm-02
+            port:
+              number: 80

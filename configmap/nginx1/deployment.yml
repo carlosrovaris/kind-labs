@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-cm-pod1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-cm-pod1
+  template:
+    metadata:
+      labels:
+        app: nginx-cm-pod1
+    spec:
+      containers:
+        - name: nginx-cm-pod1
+          image: nginx:1.15.12
+          volumeMounts:
+            - name: nginxindexcm
+              mountPath: /usr/share/nginx/html/
+      volumes:
+      - name: nginxindexcm
+        configMap:      
+          name: nginx-index-custom01
+          items:
+          - key: index_custom_rovaris1.html
+            path: index.html

@@ -1,0 +1,1 @@
+k create cm nginx-index-custom02 --from-file index_custom_rovaris2.html
